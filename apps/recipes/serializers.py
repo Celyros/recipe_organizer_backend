@@ -14,8 +14,15 @@ class TagSerializer(serializers.ModelSerializer):
         model = Tag
 
 
+class ReviewSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Review
+
+
 class RecipeSerializer(serializers.ModelSerializer):
     ingredients = IngredientSerializer(many=True)
+    reviews = serializers.SerializerMethodField()
     tags = TagSerializer(many=True)
 
     class Meta:
@@ -40,3 +47,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             recipe.tags.add(tag)
 
         return recipe
+
+    def get_reviews(self, obj):
+        reviews = Review.objects.filter(recipe=obj.id)
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data
