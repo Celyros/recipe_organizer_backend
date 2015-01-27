@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='recipe',
             name='photo',
-            field=models.CharField(default=b'', max_length=300),
+            field=models.ImageField(null=True, upload_to=b'photos', blank=True),
             preserve_default=True,
         ),
     ]
