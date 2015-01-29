@@ -4,7 +4,7 @@ from views import *
 
 urlpatterns = patterns(
     '',
-
+    # url(r'^home/$', Home.as_view(), name='home'),
     url(r'^recipes/$', RecipeList.as_view(), name='recipe-list'),
     url(r'^recipes/(?P<pk>[0-9]+)$', RecipeDetail.as_view(), name='recipe-list'),
     url(r'^add-recipe$', AddRecipe.as_view(), name='add-recipe'),
