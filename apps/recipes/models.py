@@ -36,3 +36,12 @@ class Review(models.Model):
 
     def __str__(self):
         return "%s's review" % (self.recipe)
+
+class Comment(models.Model):
+    # user = models.ForeignKey(User)
+    recipe = models.ForeignKey(Recipe)
+    text = models.TextField()
+    rating = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.text
